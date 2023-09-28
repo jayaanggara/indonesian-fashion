@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +23,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('membership', [WebController::class, 'membership'])->name('web.membership');
+Route::get('about', [WebController::class, 'about'])->name('web.about');
+Route::get('contact-us', [WebController::class, 'ContactUs'])->name('web.contact-us');
+
+Route::get('detail-event', [EventController::class, 'DetailEvent'])->name('event.detail-event');
+Route::resource('events', EventController::class);
+
+Route::get('detail-news', [NewsController::class, 'DetailNews'])->name('news.detail-news');
+Route::resource('news', NewsController::class);
+
+Route::get('detail-member', [MemberController::class, 'DetailMember'])->name('member.detail-member');
+Route::resource('member', MemberController::class);
+
+

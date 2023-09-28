@@ -9,14 +9,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="icon" href="{{ asset('/assets') }}/images/logo-oval.png">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-5.3.1/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/aos/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/foundation.css') }}">
@@ -30,7 +28,9 @@
         <main class="py-4">
             @yield('content')
         </main>
-
+        @if (!in_array(request()->segment(1),['login','register']))
+            @include('layouts.footer')
+        @endif
     </div>
     <script src="{{ asset('assets/jquery-3.7.0/jquery-3.7.0.min.js') }} "></script>
     <script src="{{ asset('assets/bootstrap-5.3.1/js/bootstrap.min.js') }} "></script>
