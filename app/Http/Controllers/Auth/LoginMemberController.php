@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LoginMemberController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,8 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/dashboard/admin';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -40,27 +39,22 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm()
+    {
+        return view('auth.login-member');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('user')->attempt($credentials)) {
+        if (Auth::guard('member')->attempt($credentials)) {
             // Admin berhasil login
-            return redirect()->route('dashboard.admin');
+            return redirect()->route('dashboard.member');
         }
 
         // Jika otentikasi gagal, kembalikan ke halaman login dengan pesan kesalahan
         return back()->with('error', 'Email atau password salah.');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        request()->session()->invalidate();
-
-        request()->session()->regenerateToken();
-
-        return redirect('/admin/login');
     }
 }

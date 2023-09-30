@@ -44,7 +44,7 @@
                                 <a class="nav-link dropdown-item" href="{{ route('register')}}">Register</a>
                             </li>
                             <li>
-                                <a class="nav-link dropdown-item" href="{{ route('login')}}">Login</a>
+                                <a class="nav-link dropdown-item" href="{{ route('login') }}">Login</a>
                             </li>
                         </ul>
                     </li>

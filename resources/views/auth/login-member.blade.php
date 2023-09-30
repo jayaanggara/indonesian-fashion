@@ -9,9 +9,9 @@
                 <a href="{{ route('home') }}">
                     <img src="{{ asset('/assets') }}/images/logo-oval.png">
                 </a>
-                <h2 class="f-28 f-lg-20 c-primary text-uppercase m-t-15">Login Admin</h2>
+                <h2 class="f-28 f-lg-20 c-primary text-uppercase m-t-15">Login</h2>
             </div>
-            <form class="form" method="POST" action="{{ route('login.admin') }}">
+            <form class="form" method="POST" action="{{ route('login') }}">
                 @csrf
                 <input type="text" name="email" placeholder="Email" class="m-b-25" autofocus>
                 @error('email')
